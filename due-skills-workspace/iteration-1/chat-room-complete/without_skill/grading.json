@@ -1,0 +1,66 @@
+{
+  "eval_id": 3,
+  "eval_name": "chat-room-complete",
+  "assertions": [
+    {
+      "name": "has_gate_service",
+      "text": "包含 Gate 服务代码",
+      "passed": false,
+      "evidence": "未找到：gate.NewGate("
+    },
+    {
+      "name": "has_node_service",
+      "text": "包含 Node 服务代码",
+      "passed": false,
+      "evidence": "未找到：node.NewNode("
+    },
+    {
+      "name": "websocket_port_8800",
+      "text": "WebSocket 端口为 8800",
+      "passed": false,
+      "evidence": "未找到：Port(8800)"
+    },
+    {
+      "name": "has_login_handler",
+      "text": "包含登录路由处理器",
+      "passed": false,
+      "evidence": "未找到：loginHandler"
+    },
+    {
+      "name": "has_chat_handler",
+      "text": "包含聊天路由处理器",
+      "passed": false,
+      "evidence": "未找到：chatHandler"
+    },
+    {
+      "name": "has_logout_handler",
+      "text": "包含登出路由处理器",
+      "passed": false,
+      "evidence": "未找到：logoutHandler"
+    },
+    {
+      "name": "uses_message_broadcast",
+      "text": "使用 message.Broadcast() 广播消息",
+      "passed": false,
+      "evidence": "未找到：message.Broadcast("
+    },
+    {
+      "name": "uses_redis_locator",
+      "text": "使用 Redis 定位器",
+      "passed": false,
+      "evidence": "未找到：redis.NewLocator("
+    },
+    {
+      "name": "uses_consul_registry",
+      "text": "使用 Consul 注册中心",
+      "passed": false,
+      "evidence": "未找到：consul.NewRegistry("
+    },
+    {
+      "name": "three_routes_defined",
+      "text": "定义了三个路由常量",
+      "passed": false,
+      "evidence": "未找到：Route"
+    }
+  ]
+}

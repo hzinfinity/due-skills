@@ -1,0 +1,48 @@
+{
+  "eval_id": 0,
+  "eval_name": "websocket-gate-server",
+  "assertions": [
+    {
+      "name": "uses_container_pattern",
+      "text": "使用 due.NewContainer() 创建容器管理组件",
+      "passed": false,
+      "evidence": "未找到：due.NewContainer()"
+    },
+    {
+      "name": "uses_gate_component",
+      "text": "使用 gate.NewGate() 创建 Gate 组件",
+      "passed": false,
+      "evidence": "未找到：gate.NewGate("
+    },
+    {
+      "name": "uses_websocket_server",
+      "text": "使用 ws.NewServer() 创建 WebSocket 服务器",
+      "passed": false,
+      "evidence": "未找到：ws.NewServer("
+    },
+    {
+      "name": "configures_redis_locator",
+      "text": "配置 Redis 定位器",
+      "passed": false,
+      "evidence": "未找到：redis.NewLocator("
+    },
+    {
+      "name": "configures_consul_registry",
+      "text": "配置 Consul 注册中心",
+      "passed": false,
+      "evidence": "未找到：consul.NewRegistry("
+    },
+    {
+      "name": "sets_max_connections",
+      "text": "设置最大连接数为 10000",
+      "passed": false,
+      "evidence": "未找到：WithMaxConnNum(10000)"
+    },
+    {
+      "name": "uses_v2_imports",
+      "text": "使用 v2 模块路径导入",
+      "passed": false,
+      "evidence": "未找到：github.com/dobyte/due/v2"
+    }
+  ]
+}

@@ -1,0 +1,298 @@
+{
+  "skill_name": "due-skills",
+  "evals": [
+    {
+      "id": 0,
+      "name": "websocket-gate-server",
+      "prompt": "我想用 due v2.5.2 创建一个 WebSocket 网关服务，需要支持 10000 个并发连接，使用 Redis 作为定位器，Consul 作为注册中心。请帮我写出完整的 main.go 代码。",
+      "expected_output": "完整的 Gate 服务代码，使用 due.NewContainer() 创建容器，gate.NewGate() 创建 Gate 组件，ws.NewServer() 创建 WebSocket 服务器，并正确配置 Redis Locator 和 Consul Registry",
+      "assertions": [
+        {
+          "name": "uses_container_pattern",
+          "description": "使用 due.NewContainer() 创建容器管理组件",
+          "type": "code_contains",
+          "check": "due.NewContainer()"
+        },
+        {
+          "name": "uses_gate_component",
+          "description": "使用 gate.NewGate() 创建 Gate 组件",
+          "type": "code_contains",
+          "check": "gate.NewGate("
+        },
+        {
+          "name": "uses_websocket_server",
+          "description": "使用 ws.NewServer() 创建 WebSocket 服务器",
+          "type": "code_contains",
+          "check": "ws.NewServer("
+        },
+        {
+          "name": "configures_redis_locator",
+          "description": "配置 Redis 定位器",
+          "type": "code_contains",
+          "check": "redis.NewLocator("
+        },
+        {
+          "name": "configures_consul_registry",
+          "description": "配置 Consul 注册中心",
+          "type": "code_contains",
+          "check": "consul.NewRegistry("
+        },
+        {
+          "name": "sets_max_connections",
+          "description": "设置最大连接数为 10000",
+          "type": "code_contains",
+          "check": "WithMaxConnNum(10000)"
+        },
+        {
+          "name": "uses_v2_imports",
+          "description": "使用 v2 模块路径导入",
+          "type": "code_contains",
+          "check": "github.com/dobyte/due/v2"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "node-router-handler",
+      "prompt": "在 due v2.5.2 中，如何创建一个 Node 服务的路由处理器？我需要处理玩家登录消息（route=1），请求包含 uid 和 token 字段，响应需要返回 code 和 message。请用 Actor 模型实现。",
+      "expected_output": "Node 服务代码，使用 proxy.Router().AddRouteHandler() 注册路由处理器，处理器函数接收 node.Context 参数，使用 ctx.Parse() 解析请求，ctx.Response() 发送响应",
+      "assertions": [
+        {
+          "name": "uses_container_pattern",
+          "description": "使用 due.NewContainer() 创建容器",
+          "type": "code_contains",
+          "check": "due.NewContainer()"
+        },
+        {
+          "name": "uses_node_component",
+          "description": "使用 node.NewNode() 创建 Node 组件",
+          "type": "code_contains",
+          "check": "node.NewNode("
+        },
+        {
+          "name": "registers_route_handler",
+          "description": "使用 Router().AddRouteHandler() 注册路由处理器",
+          "type": "code_contains",
+          "check": "Router().AddRouteHandler("
+        },
+        {
+          "name": "uses_node_context",
+          "description": "处理器函数使用 node.Context 参数",
+          "type": "code_contains",
+          "check": "node.Context"
+        },
+        {
+          "name": "parses_request",
+          "description": "使用 ctx.Parse() 解析请求",
+          "type": "code_contains",
+          "check": "ctx.Parse("
+        },
+        {
+          "name": "sends_response",
+          "description": "使用 ctx.Response() 发送响应",
+          "type": "code_contains",
+          "check": "ctx.Response("
+        },
+        {
+          "name": "login_route_equals_1",
+          "description": "登录路由 ID 为 1",
+          "type": "code_contains",
+          "check": "RouteLogin = 1"
+        },
+        {
+          "name": "request_has_uid_and_token",
+          "description": "请求结构包含 uid 和 token 字段",
+          "type": "code_contains",
+          "check": "UID   int64"
+        },
+        {
+          "name": "response_has_code_and_message",
+          "description": "响应结构包含 code 和 message 字段",
+          "type": "code_contains",
+          "check": "Code    int"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "mesh-microservice-setup",
+      "prompt": "需要使用 due v2.5.2 创建一个 Mesh 微服务，提供用户查询接口 GetUser(uid int64)，使用 RPCX 作为传输协议。请写出完整的服务代码。",
+      "expected_output": "Mesh 服务代码，使用 mesh.NewMesh() 创建组件，AddServiceProvider() 注册服务提供者，实现 GetUser 方法，正确配置 Transporter",
+      "assertions": [
+        {
+          "name": "uses_container_pattern",
+          "description": "使用 due.NewContainer() 创建容器",
+          "type": "code_contains",
+          "check": "due.NewContainer()"
+        },
+        {
+          "name": "uses_mesh_component",
+          "description": "使用 mesh.NewMesh() 创建 Mesh 组件",
+          "type": "code_contains",
+          "check": "mesh.NewMesh("
+        },
+        {
+          "name": "uses_rpcx_transporter",
+          "description": "使用 rpcx.NewTransporter() 作为传输协议",
+          "type": "code_contains",
+          "check": "rpcx.NewTransporter()"
+        },
+        {
+          "name": "registers_service_provider",
+          "description": "使用 AddServiceProvider() 注册服务提供者",
+          "type": "code_contains",
+          "check": "AddServiceProvider("
+        },
+        {
+          "name": "implements_getuser_method",
+          "description": "实现 GetUser 方法",
+          "type": "code_contains",
+          "check": "func (s *UserService) GetUser("
+        },
+        {
+          "name": "getuser_request_has_uid",
+          "description": "GetUserRequest 包含 UID int64 字段",
+          "type": "code_contains",
+          "check": "UID int64"
+        },
+        {
+          "name": "uses_context_context",
+          "description": "GetUser 方法使用 context.Context",
+          "type": "code_contains",
+          "check": "context.Context"
+        },
+        {
+          "name": "configures_redis_locator",
+          "description": "配置 Redis 定位器",
+          "type": "code_contains",
+          "check": "redis.NewLocator("
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "chat-room-complete",
+      "prompt": "想做一个简单的聊天室 demo，用 due v2.5.2 框架。需要支持玩家登录、聊天消息广播、玩家登出。Gate 用 WebSocket 端口 8800，Node 处理消息，Redis 做定位，Consul 做服务发现。",
+      "expected_output": "完整的 Gate + Node 组合示例，包含登录、聊天、登出三个路由处理器，使用 message.Broadcast() 广播消息给附近玩家",
+      "assertions": [
+        {
+          "name": "has_gate_service",
+          "description": "包含 Gate 服务代码",
+          "type": "code_contains",
+          "check": "gate.NewGate("
+        },
+        {
+          "name": "has_node_service",
+          "description": "包含 Node 服务代码",
+          "type": "code_contains",
+          "check": "node.NewNode("
+        },
+        {
+          "name": "websocket_port_8800",
+          "description": "WebSocket 端口为 8800",
+          "type": "code_contains",
+          "check": "Port(8800)"
+        },
+        {
+          "name": "has_login_handler",
+          "description": "包含登录路由处理器",
+          "type": "code_contains",
+          "check": "loginHandler"
+        },
+        {
+          "name": "has_chat_handler",
+          "description": "包含聊天路由处理器",
+          "type": "code_contains",
+          "check": "chatHandler"
+        },
+        {
+          "name": "has_logout_handler",
+          "description": "包含登出路由处理器",
+          "type": "code_contains",
+          "check": "logoutHandler"
+        },
+        {
+          "name": "uses_message_broadcast",
+          "description": "使用 message.Broadcast() 广播消息",
+          "type": "code_contains",
+          "check": "message.Broadcast("
+        },
+        {
+          "name": "uses_redis_locator",
+          "description": "使用 Redis 定位器",
+          "type": "code_contains",
+          "check": "redis.NewLocator("
+        },
+        {
+          "name": "uses_consul_registry",
+          "description": "使用 Consul 注册中心",
+          "type": "code_contains",
+          "check": "consul.NewRegistry("
+        },
+        {
+          "name": "three_routes_defined",
+          "description": "定义了三个路由常量",
+          "type": "code_count",
+          "check": "Route",
+          "min_count": 3
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "redis-eventbus-config",
+      "prompt": "在 due v2.5.2 中如何配置 Redis EventBus 来解耦服务？我需要发布 user.login 事件，并在其他地方订阅处理。",
+      "expected_output": "EventBus 配置代码，使用 redis.NewEventBus() 创建事件总线，包含 Publish 和 Subscribe 的完整示例",
+      "assertions": [
+        {
+          "name": "creates_redis_client",
+          "description": "创建 Redis 客户端",
+          "type": "code_contains",
+          "check": "redis.NewClient("
+        },
+        {
+          "name": "creates_eventbus",
+          "description": "使用 redis.NewEventBus() 创建事件总线",
+          "type": "code_contains",
+          "check": "redis.NewEventBus("
+        },
+        {
+          "name": "publishes_user_login",
+          "description": "发布 user.login 事件",
+          "type": "code_contains",
+          "check": "user.login"
+        },
+        {
+          "name": "subscribes_to_event",
+          "description": "订阅事件处理",
+          "type": "code_contains",
+          "check": "bus.Subscribe("
+        },
+        {
+          "name": "calls_publish",
+          "description": "调用 Publish 方法发布事件",
+          "type": "code_contains",
+          "check": "bus.Publish("
+        },
+        {
+          "name": "uses_v2_eventbus_import",
+          "description": "使用 v2 版本的 eventbus 导入",
+          "type": "code_contains",
+          "check": "github.com/dobyte/due/eventbus/redis/v2"
+        },
+        {
+          "name": "has_event_struct",
+          "description": "定义事件结构体",
+          "type": "code_contains",
+          "check": "type UserLoginEvent struct"
+        },
+        {
+          "name": "uses_json_marshal",
+          "description": "使用 json.Marshal 序列化事件数据",
+          "type": "code_contains",
+          "check": "json.Marshal("
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "eval_id": 1,
+  "eval_name": "node-router-handler",
+  "assertions": [
+    {
+      "name": "uses_container_pattern",
+      "text": "使用 due.NewContainer() 创建容器",
+      "passed": true,
+      "evidence": "检查：due.NewContainer()"
+    },
+    {
+      "name": "uses_node_component",
+      "text": "使用 node.NewNode() 创建 Node 组件",
+      "passed": true,
+      "evidence": "检查：node.NewNode("
+    },
+    {
+      "name": "registers_route_handler",
+      "text": "使用 Router().AddRouteHandler() 注册路由处理器",
+      "passed": true,
+      "evidence": "检查：Router().AddRouteHandler("
+    },
+    {
+      "name": "uses_node_context",
+      "text": "处理器函数使用 node.Context 参数",
+      "passed": true,
+      "evidence": "检查：node.Context"
+    },
+    {
+      "name": "parses_request",
+      "text": "使用 ctx.Parse() 解析请求",
+      "passed": true,
+      "evidence": "检查：ctx.Parse("
+    },
+    {
+      "name": "sends_response",
+      "text": "使用 ctx.Response() 发送响应",
+      "passed": true,
+      "evidence": "检查：ctx.Response("
+    },
+    {
+      "name": "login_route_equals_1",
+      "text": "登录路由 ID 为 1",
+      "passed": true,
+      "evidence": "检查：RouteLogin = 1"
+    },
+    {
+      "name": "request_has_uid_and_token",
+      "text": "请求结构包含 uid 和 token 字段",
+      "passed": true,
+      "evidence": "检查：UID   int64"
+    },
+    {
+      "name": "response_has_code_and_message",
+      "text": "响应结构包含 code 和 message 字段",
+      "passed": true,
+      "evidence": "检查：Code    int"
+    }
+  ]
+}

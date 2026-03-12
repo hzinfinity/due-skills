@@ -1,0 +1,22 @@
+[
+  {"query": "我想用 due 框架创建一个 WebSocket 游戏服务器，支持 10000 并发连接", "should_trigger": true},
+  {"query": "due v2.5.2 中如何实现 Node 服务的路由处理器？", "should_trigger": true},
+  {"query": "如何用 due 框架创建 Mesh 微服务，使用 RPCX 传输协议？", "should_trigger": true},
+  {"query": "due 框架中 Gate、Node、Mesh 三层架构怎么使用？", "should_trigger": true},
+  {"query": "想用 due 做一个聊天室 demo，需要玩家登录、聊天消息广播、玩家登出功能", "should_trigger": true},
+  {"query": "due v2.5.2 中如何配置 Redis EventBus 来解耦服务？", "should_trigger": true},
+  {"query": "due 框架如何使用 Consul 做服务发现？", "should_trigger": true},
+  {"query": "如何用 due 框架实现 Actor 模型处理游戏逻辑？", "should_trigger": true},
+  {"query": "due 框架中 session 绑定和解绑怎么做？", "should_trigger": true},
+  {"query": "想用 due 框架的 Container 管理组件生命周期", "should_trigger": true},
+  {"query": "帮我写一个简单的 Go HTTP 服务器", "should_trigger": false},
+  {"query": "如何用 Gin 框架创建 RESTful API？", "should_trigger": false},
+  {"query": "Python 中如何实现 WebSocket 服务器？", "should_trigger": false},
+  {"query": "Go 语言中怎么使用 goroutine 处理并发？", "should_trigger": false},
+  {"query": "如何用 Redis 做缓存？", "should_trigger": false},
+  {"query": "Go-zero 框架怎么创建微服务？", "should_trigger": false},
+  {"query": "帮我解释一下什么是 Actor 模型", "should_trigger": false},
+  {"query": "如何使用 Docker 部署 Go 应用？", "should_trigger": false},
+  {"query": "Go 语言中如何处理 JSON 序列化和反序列化？", "should_trigger": false},
+  {"query": "帮我写一个 Python 脚本来处理 Excel 文件", "should_trigger": false}
+]

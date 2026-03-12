@@ -1,0 +1,54 @@
+{
+  "eval_id": 4,
+  "eval_name": "redis-eventbus-config",
+  "assertions": [
+    {
+      "name": "creates_redis_client",
+      "text": "创建 Redis 客户端",
+      "passed": true,
+      "evidence": "检查：redis.NewClient("
+    },
+    {
+      "name": "creates_eventbus",
+      "text": "使用 redis.NewEventBus() 创建事件总线",
+      "passed": true,
+      "evidence": "检查：redis.NewEventBus("
+    },
+    {
+      "name": "publishes_user_login",
+      "text": "发布 user.login 事件",
+      "passed": true,
+      "evidence": "检查：user.login"
+    },
+    {
+      "name": "subscribes_to_event",
+      "text": "订阅事件处理",
+      "passed": true,
+      "evidence": "检查：bus.Subscribe("
+    },
+    {
+      "name": "calls_publish",
+      "text": "调用 Publish 方法发布事件",
+      "passed": true,
+      "evidence": "检查：bus.Publish("
+    },
+    {
+      "name": "uses_v2_eventbus_import",
+      "text": "使用 v2 版本的 eventbus 导入",
+      "passed": true,
+      "evidence": "检查：github.com/dobyte/due/eventbus/redis/v2"
+    },
+    {
+      "name": "has_event_struct",
+      "text": "定义事件结构体",
+      "passed": true,
+      "evidence": "检查：type UserLoginEvent struct"
+    },
+    {
+      "name": "uses_json_marshal",
+      "text": "使用 json.Marshal 序列化事件数据",
+      "passed": true,
+      "evidence": "检查：json.Marshal("
+    }
+  ]
+}

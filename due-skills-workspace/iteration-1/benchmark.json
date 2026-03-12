@@ -1,0 +1,104 @@
+{
+  "skill_name": "due-skills",
+  "iteration": 1,
+  "with_skill": {
+    "pass_rate": {
+      "mean": 100.0,
+      "stddev": 0
+    },
+    "time": {
+      "mean": 0,
+      "stddev": 0
+    },
+    "tokens": {
+      "mean": 0,
+      "stddev": 0
+    }
+  },
+  "without_skill": {
+    "pass_rate": {
+      "mean": 45.23809523809524,
+      "stddev": 0
+    },
+    "time": {
+      "mean": 0,
+      "stddev": 0
+    },
+    "tokens": {
+      "mean": 0,
+      "stddev": 0
+    }
+  },
+  "delta": {
+    "pass_rate": 54.761904761904766,
+    "time": 0,
+    "tokens": 0
+  },
+  "evals": [
+    {
+      "name": "websocket-gate-server",
+      "with_skill": {
+        "pass_rate": 100.0,
+        "passed": 7,
+        "total": 7
+      },
+      "without_skill": {
+        "pass_rate": 0.0,
+        "passed": 0,
+        "total": 7
+      }
+    },
+    {
+      "name": "node-router-handler",
+      "with_skill": {
+        "pass_rate": 100.0,
+        "passed": 9,
+        "total": 9
+      },
+      "without_skill": {
+        "pass_rate": 88.88888888888889,
+        "passed": 8,
+        "total": 9
+      }
+    },
+    {
+      "name": "mesh-microservice-setup",
+      "with_skill": {
+        "pass_rate": 100.0,
+        "passed": 8,
+        "total": 8
+      },
+      "without_skill": {
+        "pass_rate": 37.5,
+        "passed": 3,
+        "total": 8
+      }
+    },
+    {
+      "name": "chat-room-complete",
+      "with_skill": {
+        "pass_rate": 100.0,
+        "passed": 10,
+        "total": 10
+      },
+      "without_skill": {
+        "pass_rate": 0.0,
+        "passed": 0,
+        "total": 10
+      }
+    },
+    {
+      "name": "redis-eventbus-config",
+      "with_skill": {
+        "pass_rate": 100.0,
+        "passed": 8,
+        "total": 8
+      },
+      "without_skill": {
+        "pass_rate": 100.0,
+        "passed": 8,
+        "total": 8
+      }
+    }
+  ]
+}
