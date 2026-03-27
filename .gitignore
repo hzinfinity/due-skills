@@ -1,1 +1,11 @@
 .claude
+node_modules/
+dist/
+build/
+*.log
+.DS_Store
+Thumbs.db
+# Skill workspaces (generated during testing)
+*-workspace/
+evals/
+*.skill

@@ -1,6 +1,6 @@
 # due-skills (v2.5.2)
 
-due 游戏服务器框架的 AI 助手技能知识库。
+due 游戏服务器框架的 AI 助手技能知识库 - 可通过 `npx skills` 安装。
 
 ## 版本说明
 
@@ -16,14 +16,34 @@ due 游戏服务器框架的 AI 助手技能知识库。
 
 ## 安装
 
-将此目录克隆到你的 skills 目录：
+### 方法 1: 使用 npx skills (推荐)
 
 ```bash
-# 项目级别（推荐）
-git clone https://github.com/your-org/due-skills.git .claude/skills/due-skills
+# 从 npm 安装（如果已发布）
+npx @anthropic/skills install @hzinfinity/due-skills
+```
 
-# 个人级别（所有项目可用）
-git clone https://github.com/your-org/due-skills.git ~/.claude/skills/due-skills
+### 方法 2: 从本地目录安装
+
+```bash
+# 克隆仓库到本地
+git clone https://github.com/hzInfinity/skills.git
+cd skills/due-skills
+
+# 使用 npx skills 安装
+npx @anthropic/skills install .
+```
+
+### 方法 3: 手动安装（项目级别）
+
+```bash
+git clone https://github.com/hzInfinity/skills.git .claude/skills/due-skills
+```
+
+### 方法 4: 手动安装（全局级别）
+
+```bash
+git clone https://github.com/hzInfinity/skills.git ~/.claude/skills/due-skills
 ```
 
 ## 使用

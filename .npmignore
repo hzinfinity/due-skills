@@ -1,0 +1,41 @@
+# Git
+.git/
+.gitignore
+
+# Claude Code local settings
+.claude/
+
+# Skill workspaces (testing outputs)
+*-workspace/
+
+# Evaluation files
+evals/
+eval-viewer/
+
+# Packaged skill files
+*.skill
+
+# Node modules (not needed for skills)
+node_modules/
+
+# Build artifacts
+dist/
+build/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Test and coverage
+coverage/
+*.test.js
+*.spec.js

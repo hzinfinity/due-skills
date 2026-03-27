@@ -1,0 +1,68 @@
+{
+  "name": "@hzinfinity/due-skills",
+  "version": "1.0.0",
+  "description": "Comprehensive knowledge base for due game server framework (v2.5.2) - A lightweight, high-performance distributed game server framework",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0",
+    "build": "echo \"No build required\" && exit 0"
+  },
+  "keywords": [
+    "claude-code",
+    "claude-skill",
+    "due",
+    "due-framework",
+    "game-server",
+    "distributed-systems",
+    "actor-model",
+    "golang",
+    "go-game-server",
+    "microservices",
+    "gate-service",
+    "node-service",
+    "mesh-service",
+    "service-discovery",
+    "event-bus",
+    "redis",
+    "consul",
+    "etcd",
+    "nacos",
+    "nats",
+    "kafka",
+    "rabbitmq",
+    "grpc",
+    "rpcx",
+    "websocket",
+    "tcp",
+    "kcp"
+  ],
+  "author": "hzInfinity",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hzInfinity/skills.git",
+    "directory": "due-skills"
+  },
+  "bugs": {
+    "url": "https://github.com/hzInfinity/skills/issues"
+  },
+  "homepage": "https://github.com/hzInfinity/skills/tree/main/due-skills#readme",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "INSTALL.md",
+    "getting-started/",
+    "references/",
+    "best-practices/",
+    "troubleshooting/",
+    "examples/",
+    "skill-patterns/"
+  ],
+  "engines": {
+
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
