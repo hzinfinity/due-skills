@@ -30,6 +30,54 @@ allowed-tools:
   - Read
   - Grep
   - Glob
+  - Edit
+  - Write
+  - Bash
+  - task
+  - todowrite
+  - lsp_diagnostics
+  - lsp_goto_definition
+  - lsp_find_references
+  - lsp_symbols
+  - lsp_prepare_rename
+  - lsp_rename
+  - ast_grep_search
+  - ast_grep_replace
+  - glob
+  - websearch
+  - webfetch
+  - codesearch
+  - context7_resolve-library-id
+  - context7_query-docs
+trigger-keywords:
+  - "due.NewContainer"
+  - "gate.NewGate"
+  - "node.NewNode"
+  - "mesh.NewMesh"
+  - "proxy.Router"
+  - "AddRouteHandler"
+  - "github.com/dobyte/due"
+  - "due-skills"
+  - "websocket"
+  - "TCP"
+  - "KCP"
+  - "Actor"
+  - "Consul"
+  - "Etcd"
+  - "Nacos"
+  - "Redis"
+  - "EventBus"
+  - "rpcx"
+  - "grpc"
+file-patterns:
+  - "*.go"
+directories:
+  - "gate"
+  - "node"
+  - "mesh"
+  - "cluster"
+  - "cmd"
+  - "internal"
 ---
 
 # due Skills for AI Agents

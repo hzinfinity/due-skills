@@ -99,22 +99,39 @@ func (s *CustomSerializer) Unmarshal(data []byte, v interface{}) error {
 
 ## 协议配置
 
-### Gate 协议配置
+### Gate 协议配置 (v2.5.2)
 
 ```go
-gate := ws.NewGate(
+// v2.5.2 使用 Container 模式
+container := due.NewContainer()
+
+server := ws.NewServer(
     ws.WithSerializer(json.NewSerializer()),
     // 其他配置...
 )
+
+component := gate.NewGate(
+    gate.WithServer(server),
+    // 其他配置...
+)
+
+container.Add(component)
+container.Serve()
 ```
 
-### Node 协议配置
+### Node 协议配置 (v2.5.2)
 
 ```go
-node := NewNode(
+// v2.5.2 使用 Container 模式
+container := due.NewContainer()
+
+component := node.NewNode(
     node.WithSerializer(protobuf.NewSerializer()),
     // 其他配置...
 )
+
+container.Add(component)
+container.Serve()
 ```
 
 ## 请求 - 响应模式
@@ -164,26 +181,48 @@ const (
 )
 ```
 
-### 路由匹配
+### 路由匹配 (v2.5.2)
 
 ```go
-// Gate 层路由匹配
-gate.Match(RouteLogin, func(ctx context.Context, conn *ws.Conn, message []byte) {
-    // 处理登录
-})
+// v2.5.2 使用 Router().AddRouteHandler() 注册路由处理器
+proxy := component.Proxy()
 
-gate.Match(RouteMove, func(ctx context.Context, conn *ws.Conn, message []byte) {
-    // 处理移动
-})
+proxy.Router().AddRouteHandler(RouteLogin, false, loginHandler)
+proxy.Router().AddRouteHandler(RouteMove, false, moveHandler)
 
-// Actor 层路由匹配
-func (a *PlayerActor) OnMessage(ctx context.Context, message *actor.Message) {
-    switch message.Route {
-    case RouteLogin:
-        a.handleLogin(ctx, message)
-    case RouteMove:
-        a.handleMove(ctx, message)
+// 处理器函数签名
+func loginHandler(ctx node.Context) {
+    req := &LoginRequest{}
+    res := &LoginResponse{}
+
+    defer func() {
+        ctx.Response(res)
+    }()
+
+    if err := ctx.Parse(req); err != nil {
+        res.Code = codes.InternalError.Code()
+        return
     }
+
+    // 处理登录逻辑
+    res.Code = codes.OK.Code()
+}
+
+func moveHandler(ctx node.Context) {
+    req := &MoveRequest{}
+    res := &MoveResponse{}
+
+    defer func() {
+        ctx.Response(res)
+    }()
+
+    if err := ctx.Parse(req); err != nil {
+        res.Code = codes.InternalError.Code()
+        return
+    }
+
+    // 处理移动逻辑
+    res.Code = codes.OK.Code()
 }
 ```
 
@@ -225,13 +264,23 @@ func (d *CustomDecoder) Decode(conn net.Conn) ([]byte, error) {
 }
 ```
 
-### 使用自定义协议
+### 使用自定义协议 (v2.5.2)
 
 ```go
-gate := ws.NewGate(
+// v2.5.2 使用 Container 模式配置自定义协议
+container := due.NewContainer()
+
+server := ws.NewServer(
     ws.WithEncoder(&CustomEncoder{}),
     ws.WithDecoder(&CustomDecoder{}),
 )
+
+component := gate.NewGate(
+    gate.WithServer(server),
+)
+
+container.Add(component)
+container.Serve()
 ```
 
 ## 消息体设计

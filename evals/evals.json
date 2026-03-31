@@ -449,6 +449,228 @@
           "check": "MaxPlayers"
         }
       ]
+    },
+    {
+      "id": 8,
+      "name": "tcp-gate-server",
+      "prompt": "用 due v2.5.2 创建一个 TCP 网关服务，端口 9000，支持心跳检测（间隔 60 秒），最大连接数 10000。请写出完整的 main.go 代码。",
+      "expected_output": "TCP Gate 服务代码，使用 due.NewContainer() 创建容器，tcp.NewServer() 创建 TCP 服务器，配置心跳间隔，gate.NewGate() 创建 Gate 组件",
+      "assertions": [
+        {
+          "name": "uses_container_pattern",
+          "description": "使用 due.NewContainer() 创建容器",
+          "type": "code_contains",
+          "check": "due.NewContainer()"
+        },
+        {
+          "name": "uses_tcp_server",
+          "description": "使用 tcp.NewServer() 创建 TCP 服务器",
+          "type": "code_contains",
+          "check": "tcp.NewServer("
+        },
+        {
+          "name": "configures_tcp_port",
+          "description": "配置 TCP 端口为 9000",
+          "type": "code_contains",
+          "check": "tcp.WithPort(9000)"
+        },
+        {
+          "name": "configures_heartbeat",
+          "description": "配置心跳间隔 60 秒",
+          "type": "code_contains",
+          "check": "tcp.WithHeartbeatInterval(60)"
+        },
+        {
+          "name": "uses_gate_component",
+          "description": "使用 gate.NewGate() 创建 Gate 组件",
+          "type": "code_contains",
+          "check": "gate.NewGate("
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "kcp-gate-server",
+      "prompt": "用 due v2.5.2 创建一个 KCP 网关服务，端口 10000，使用正常模式（RTT 40ms，适合 MOBA/FPS），最大连接数 5000。请写出完整的 main.go 代码。",
+      "expected_output": "KCP Gate 服务代码，使用 due.NewContainer() 创建容器，kcp.NewServer() 创建 KCP 服务器，配置正常模式，gate.NewGate() 创建 Gate 组件",
+      "assertions": [
+        {
+          "name": "uses_container_pattern",
+          "description": "使用 due.NewContainer() 创建容器",
+          "type": "code_contains",
+          "check": "due.NewContainer()"
+        },
+        {
+          "name": "uses_kcp_server",
+          "description": "使用 kcp.NewServer() 创建 KCP 服务器",
+          "type": "code_contains",
+          "check": "kcp.NewServer("
+        },
+        {
+          "name": "configures_kcp_port",
+          "description": "配置 KCP 端口为 10000",
+          "type": "code_contains",
+          "check": "kcp.WithPort(10000)"
+        },
+        {
+          "name": "configures_kcp_mode",
+          "description": "配置 KCP 模式为正常模式(1)",
+          "type": "code_contains",
+          "check": "kcp.WithMode(1)"
+        },
+        {
+          "name": "uses_gate_component",
+          "description": "使用 gate.NewGate() 创建 Gate 组件",
+          "type": "code_contains",
+          "check": "gate.NewGate("
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "actor-communication",
+      "prompt": "在 due v2.5.2 中如何在 Node 服务中实现 Actor 间通信？请示例发送消息给指定 UID，以及广播消息给多个 UID。",
+      "expected_output": "Actor 通信代码，使用 message.Send() 发送消息给指定 UID，使用 message.Broadcast() 广播消息给多个 UID",
+      "assertions": [
+        {
+          "name": "imports_message_package",
+          "description": "导入 message 包",
+          "type": "code_contains",
+          "check": "github.com/dobyte/due/v2/message"
+        },
+        {
+          "name": "uses_message_send",
+          "description": "使用 message.Send() 发送消息",
+          "type": "code_contains",
+          "check": "message.Send("
+        },
+        {
+          "name": "uses_message_broadcast",
+          "description": "使用 message.Broadcast() 广播消息",
+          "type": "code_contains",
+          "check": "message.Broadcast("
+        },
+        {
+          "name": "demonstrates_actor_communication",
+          "description": "演示 Actor 间通信",
+          "type": "code_contains",
+          "check": "uid int64"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "session-management",
+      "prompt": "在 due v2.5.2 中如何使用 Session 管理玩家状态？请示例绑定 UID、设置数据、获取数据和读取 UID。",
+      "expected_output": "Session 管理代码，使用 ctx.Session() 获取会话，session.Bind() 绑定 UID，session.Set() 设置数据，session.Get() 获取数据，session.Uid() 读取 UID",
+      "assertions": [
+        {
+          "name": "uses_session_context",
+          "description": "使用 ctx.Session() 获取会话",
+          "type": "code_contains",
+          "check": "ctx.Session()"
+        },
+        {
+          "name": "binds_uid",
+          "description": "使用 session.Bind() 绑定 UID",
+          "type": "code_contains",
+          "check": "session.Bind("
+        },
+        {
+          "name": "sets_session_data",
+          "description": "使用 session.Set() 设置数据",
+          "type": "code_contains",
+          "check": "session.Set("
+        },
+        {
+          "name": "gets_session_data",
+          "description": "使用 session.Get() 获取数据",
+          "type": "code_contains",
+          "check": "session.Get("
+        },
+        {
+          "name": "reads_uid",
+          "description": "使用 session.Uid() 读取 UID",
+          "type": "code_contains",
+          "check": "session.Uid()"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "redis-locator-gate",
+      "prompt": "用 due v2.5.2 创建 Gate 服务，使用 Redis 定位器和 Consul 注册中心，WebSocket 端口 8800。请写出完整的 main.go 代码。",
+      "expected_output": "Gate 服务代码，使用 due.NewContainer() 创建容器，redis.NewLocator() 创建 Redis 定位器，consul.NewRegistry() 创建 Consul 注册中心",
+      "assertions": [
+        {
+          "name": "uses_container_pattern",
+          "description": "使用 due.NewContainer() 创建容器",
+          "type": "code_contains",
+          "check": "due.NewContainer()"
+        },
+        {
+          "name": "uses_redis_locator",
+          "description": "使用 redis.NewLocator() 创建定位器",
+          "type": "code_contains",
+          "check": "redis.NewLocator("
+        },
+        {
+          "name": "uses_consul_registry",
+          "description": "使用 consul.NewRegistry() 创建注册中心",
+          "type": "code_contains",
+          "check": "consul.NewRegistry("
+        },
+        {
+          "name": "uses_gate_component",
+          "description": "使用 gate.NewGate() 创建 Gate 组件",
+          "type": "code_contains",
+          "check": "gate.NewGate("
+        },
+        {
+          "name": "uses_websocket",
+          "description": "使用 ws.NewServer() 创建 WebSocket 服务器",
+          "type": "code_contains",
+          "check": "ws.NewServer("
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "rpcx-transporter-node",
+      "prompt": "在 due v2.5.2 中如何使用 RPCX 传输器配置 Node 服务？请写出完整的 Node 服务代码。",
+      "expected_output": "Node 服务代码，使用 due.NewContainer() 创建容器，rpcx.NewTransporter() 创建 RPCX 传输器，node.WithTransporter() 配置传输器",
+      "assertions": [
+        {
+          "name": "uses_container_pattern",
+          "description": "使用 due.NewContainer() 创建容器",
+          "type": "code_contains",
+          "check": "due.NewContainer()"
+        },
+        {
+          "name": "uses_rpcx_transporter",
+          "description": "使用 rpcx.NewTransporter() 创建 RPCX 传输器",
+          "type": "code_contains",
+          "check": "rpcx.NewTransporter()"
+        },
+        {
+          "name": "configures_transporter",
+          "description": "使用 node.WithTransporter() 配置传输器",
+          "type": "code_contains",
+          "check": "node.WithTransporter("
+        },
+        {
+          "name": "uses_node_component",
+          "description": "使用 node.NewNode() 创建 Node 组件",
+          "type": "code_contains",
+          "check": "node.NewNode("
+        },
+        {
+          "name": "imports_rpcx",
+          "description": "导入 RPCX 传输器",
+          "type": "code_contains",
+          "check": "github.com/dobyte/due/transport/rpcx/v2"
+        }
+      ]
     }
   ]
 }
